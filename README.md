@@ -70,7 +70,7 @@ Improvements in the model can be made based on the key performance indicators. T
 * Optimizing the waypoint sequence analytically for the pedestrians instead of arbitrarily choosing.
 * Evaluating the sensitivity to the "forward heading" parameters, in order to improve trajectory of "stuck" pedestrians
 * Evaluating sensitivity to the group force parameters, which control the formation of the group (single line, or spread out laterally)
-* Once prototype of solver is complete, export to C++ or Python for wider array of data analysis and high performance computing.
+* __Once prototype of solver is complete, export to C++ or Python for wider array of data analysis and high performance computing.__
 
 ## References
 1. Helbing D, Molnaar P., Social force model for pedestrian dynamics (1885), Phys Rev E., 51:4282-4286, doi: 10.1103/PhysRevE.51.4282
