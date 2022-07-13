@@ -45,7 +45,7 @@ $\phi =\frac{1}{1}$            |   $\phi = \frac{1}{0.5} $
 
 
 
-For $\phi =1$, we see that the increased crowding at the intersection leads to some pedestrians being 'stuck' against the walls and unable to reach their desired exit. Additionally, at $t\approx 30s$ we note there is some crowding around some focal points at the intersection. This may be  due to the points $(13,10)$ and $(10, 12)$ being initialised as waypoints (points along the path the pedestrians are required to pass through) for the AB and CD paths respectively. These points were arbitrarily provided as halfway marks along the desired path, but due to the high density of pedestrians could be an impediment to the pedestrians unable to reach the point. 
+For $\phi =1$ and $\phi =2$, we see that the increased crowding at the intersection leads to some pedestrians being 'stuck' against the walls and unable to reach their desired exit in both simulations. Additionally, at $t\approx 30s$ we note there is some crowding around some focal points at the intersection. This may be  due to the points $(13,10)$ and $(10, 12)$ being initialised as waypoints (points along the path the pedestrians are required to pass through) for the AB and CD paths respectively. These points were arbitrarily provided as halfway marks along the desired path, but due to the high density of pedestrians could be an impediment to the pedestrians unable to reach the point. 
 
 ### Groups
 
