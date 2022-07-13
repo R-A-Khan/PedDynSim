@@ -46,7 +46,7 @@ $\phi =1$            |   $\phi = 2 $
 
 
 
-For $\phi =1$, we see that the increased crowding at the intersection leads to some pedestrians being 'stuck' against the walls and unable to reach their desired exit. Additionally, at $t\approx 30s$ we note there is some crowding around some focal points. This may be  due to the points $(13,10)$ and $(10, 12)$ being initialised as waypoints (points along the path the pedestrians are required to pass through) for the AB and CD paths respectively. These points were arbitrarily provided as halfway marks along the desired path, but due to the high density of pedestrians could be an impediment to the pedestrians unable to reach the point. 
+For $\phi =1$, we see that the increased crowding at the intersection leads to some pedestrians being 'stuck' against the walls and unable to reach their desired exit. Additionally, at $t\approx 30s$ we note there is some crowding around some focal points at the intersection. This may be  due to the points $(13,10)$ and $(10, 12)$ being initialised as waypoints (points along the path the pedestrians are required to pass through) for the AB and CD paths respectively. These points were arbitrarily provided as halfway marks along the desired path, but due to the high density of pedestrians could be an impediment to the pedestrians unable to reach the point. 
 
 ### Groups
 
@@ -62,17 +62,15 @@ $\phi =\frac{5}{5}$            |   $\phi = \frac{6}{3} $
 ![](simulation_07.gif)  |  ![](simulation_06.gif)
 
 
-
-### Sensitivity to Group Force Parameters
-
-### Performance indiciators
+We see that adjusting the waypoint sequence has solved the crowding and 'stuck' pedestrian issue. There is still some crowding for $\phi = 2$, however, that is to be expected given the density within the given geometry. 
 
 ## References
 1. Helbing D, Molnaar P., Social force model for pedestrian dynamics (1885), Phys Rev E., 51:4282-4286, doi: 10.1103/PhysRevE.51.4282
 2. Farina F, Fontanelli D, Garulli A, Giannitrapani A, Prattichizzo D (2017), Walking Ahead: The Headed Social Force Model. PLoS ONE, 12(1): e0169734, doi:10.1371/journal.pone.0169734
 
 ## Code
-Case table
+
+The simulation is created by executing the matlab script __simulation_run.m__ . The flux variables and other parameter settings can be adjusted in this script. The relevant case files are automatically saved using the identifier __case_num__. The video of the simulation can be generated using the __play_video.m__ script. 
 
 | Case Number  | Description                 |
 |--------------|-----------------------------|
@@ -80,10 +78,8 @@ Case table
 |  02           |        $\phi = \frac{1}{0.5}$                      |
 |  03          |           $\phi = \frac{1}{1} $                  |
 |  04           |     $\phi = \frac{1}{2}$                         |
-|  05           |            $\phi = \frac{2}{10}$, group                  |
-|  06           |       $\phi = \frac{6}{3}$, group                        |
-|  07           |             $\phi = \frac{5}{5}$, group                  |
-|  08           |       $\phi = \frac{5}{10}$, group              |
-|  09          |   $\phi = \frac{5}{5}$, group, waypoint seq adjusted                          |
-|  10          |  $\phi = \frac{6}{3}$, group, waypoint seq adjusted                            |
+|  05           |            $\phi = \frac{2}{10}$, group, waypoint sequence adjusted                  |
+|  06           |       $\phi = \frac{6}{3}$, group, waypoint sequence adjusted                        |
+|  07           |             $\phi = \frac{5}{5}$, group, waypoint sequence adjusted                   |
+|  08           |       $\phi = \frac{5}{10}$, group, waypoint sequence adjusted               |
 
