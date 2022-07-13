@@ -26,6 +26,26 @@ The numerical implementation is adapted for the current geometry from the method
 
 table with case numbers 
 
+<div align="center">
+  <img src="simulation_01.gif" alt="Case 1" width="600"/>
+   <p>$\phi = \frac{2}{10}  \ p/s$</p>
+</div>
+
+<div align="center">
+  <img src="simulation_04.gif" alt="Case 4" width="600"/>
+   <p>$\phi = \frac{1}{2}  \ p/s$</p>
+</div>
+
+<div align="center">
+  <img src="simulation_03.gif" alt="Case 3" width="600"/>
+   <p> $\phi = 1  \ p/s$</p>
+</div>
+
+<div align="center">
+  <img src="simulation_02.gif" alt="Case 2" width="600"/>
+   <p>$\phi = 2  \ p/s$</p>
+</div>
+
 
 video gifs
 
