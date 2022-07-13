@@ -70,7 +70,7 @@ We see that adjusting the waypoint sequence has solved the crowding and 'stuck' 
 
 ## Code
 
-The simulation is created by executing the matlab script __simulation_run.m__ . The flux variables and other parameter settings can be adjusted in this script. The relevant case files are automatically saved using the identifier __case_num__. The video of the simulation can be generated using the __play_video.m__ script. 
+The simulation is created by executing the matlab script __simulation_run.m__ . The flux variables and other parameter settings can be adjusted in this script. The relevant case files are automatically saved using the identifier __case_num__. The video of the simulation can be generated using the __play_video.m__ script. All results displayed here are found in the __results__ directory, and the following table describes each data file.
 
 | Case Number  | Description                 |
 |--------------|-----------------------------|
