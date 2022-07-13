@@ -64,6 +64,13 @@ $\phi =\frac{5}{5}$            |   $\phi = \frac{6}{3} $
 
 We see that adjusting the waypoint sequence has solved the crowding and 'stuck' pedestrian issue. There is still some crowding for $\phi = 2$, however, that is to be expected given the density within the given geometry. 
 
+## Future Considerations
+Improvements in the model can be made based on the key performance indicators. These can include
+* Minimising the time between entry and exit along the desired path AB or CD for different values of $\phi$. 
+* Optimizing the waypoint sequence analytically for the pedestrians instead of arbitrarily choosing.
+* Evaluating the sensitivity to the "forward heading" parameters, in order to improve trajectory of "stuck" pedestrians
+* Evaluating sensitivity to the group force parameters, which control the formation of the group (single line, or spread out laterally)
+
 ## References
 1. Helbing D, Molnaar P., Social force model for pedestrian dynamics (1885), Phys Rev E., 51:4282-4286, doi: 10.1103/PhysRevE.51.4282
 2. Farina F, Fontanelli D, Garulli A, Giannitrapani A, Prattichizzo D (2017), Walking Ahead: The Headed Social Force Model. PLoS ONE, 12(1): e0169734, doi:10.1371/journal.pone.0169734
