@@ -33,13 +33,13 @@ frame centered at the pedestrian's position and whose x-axis is aligned with the
 
 Simulation results for the four different values of $\phi$ are shown in the animations below.
 
-$\phi =\frac{2}{10}$            |   $\phi = \frac{1}{2} $
+$\phi =\frac{1}{5}$            |   $\phi = \frac{1}{2} $
 :-------------------------:|:-------------------------:
 ![](simulation_01.gif)  |  ![](simulation_04.gif)
 
 For $\phi = 0.2$, we note that while the pedestrians are able to navigate between other pedestrians and walls, different starting positions in the 'starting zone' and external influences before they enter the corridor cause deviations from desired velocity, and subsequently cause slight perturbations in the flux at which they enter the corridor. At an increased flux of 1 pedestrian every 2 seconds the simulation shows the model performs quite well, and all pedestrians are able to effectively navigate towards their desired exit point.
 
-$\phi =1$            |   $\phi = 2 $
+$\phi =\frac{1}{1}$            |   $\phi = \frac{1}{0.5} $
 :-------------------------:|:-------------------------:
 ![](simulation_03.gif)  |  ![](simulation_02.gif)
 
