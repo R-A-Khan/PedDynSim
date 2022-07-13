@@ -73,7 +73,7 @@ Improvements in the model can be made based on the key performance indicators. T
 * __Once prototype of solver is complete, export to C++ or Python for wider array of data analysis and high performance computing.__
 
 ## References
-1. Helbing D, Molnaar P., Social force model for pedestrian dynamics (1885), Phys Rev E., 51:4282-4286, doi: 10.1103/PhysRevE.51.4282
+1. Helbing D, Molnaar P., Social force model for pedestrian dynamics (1995), Phys Rev E., 51:4282-4286, doi: 10.1103/PhysRevE.51.4282
 2. Farina F, Fontanelli D, Garulli A, Giannitrapani A, Prattichizzo D (2017), Walking Ahead: The Headed Social Force Model. PLoS ONE, 12(1): e0169734, doi:10.1371/journal.pone.0169734
 
 ## Code
