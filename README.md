@@ -46,23 +46,11 @@ $\phi =1$            |   $\phi = 2 $
 
 
 
-For $\phi =1$, we see that the increased crowding at the intersection leads to some pedestrians being 'stuck' against the walls and unable to reach their desired exit. Additionally, at $t\~30s$ we note there is some crowding around some focal points. This may be  due to the points $(13,10)$ and $(10, 12)$ being initialised as waypoints (points along the path the pedestrians are required to pass through) for the AB and CD paths respectively. These points were arbitrarily provided as halfway marks along the desired path, but due to the high density of pedestrians could be an impediment to the pedestrians unable to reach the point. 
-
-
-insert image of t = 30
-
-video gifs
-
-* Random initial point in the x-direction in the corridor
-* they start to form a single file
-* the spacing as they enter the corridor is not fixed
-* The waypoint sequence can have a negative effect
-* The headed force can prevent them from moving back
-
+For $\phi =1$, we see that the increased crowding at the intersection leads to some pedestrians being 'stuck' against the walls and unable to reach their desired exit. Additionally, at $t\approx 30s$ we note there is some crowding around some focal points. This may be  due to the points $(13,10)$ and $(10, 12)$ being initialised as waypoints (points along the path the pedestrians are required to pass through) for the AB and CD paths respectively. These points were arbitrarily provided as halfway marks along the desired path, but due to the high density of pedestrians could be an impediment to the pedestrians unable to reach the point. 
 
 ### Groups
 
-We repeat the simulations for the four different values of $\phi$, but this time with groups of pedestrians instead of individuals. 
+We repeat the simulations for the four different values of $\phi$, but this time with groups of pedestrians instead of individuals. Here $\phi$ represents the flux of the group. Additionally, we adjust the waypoints $(13,10)$ and $(10, 12)$ for AB and CD respectively to $(13,20)$ and $(20, 12)$ to avoid crowding at the intersection. 
 
 $\phi =\frac{2}{10}$            |   $\phi = \frac{5}{10} $
 :-------------------------:|:-------------------------:
@@ -73,15 +61,29 @@ $\phi =\frac{5}{5}$            |   $\phi = \frac{6}{3} $
 :-------------------------:|:-------------------------:
 ![](simulation_07.gif)  |  ![](simulation_06.gif)
 
-We see similar results for the higher flux values in the group simulation. Pedestrians are getting suck along the walls blocking them from their desired heading, and there is crowding around the waypoint values in the intersection. 
-
-video gifs
-
-* Similar issues with groups
-* Let it run longer, see the group force preventing others from leaving the corridor
 
 
 ### Sensitivity to Group Force Parameters
 
 ### Performance indiciators
+
+## References
+1. Helbing D, Molnaar P., Social force model for pedestrian dynamics (1885), Phys Rev E., 51:4282-4286, doi: 10.1103/PhysRevE.51.4282
+2. Farina F, Fontanelli D, Garulli A, Giannitrapani A, Prattichizzo D (2017), Walking Ahead: The Headed Social Force Model. PLoS ONE, 12(1): e0169734, doi:10.1371/journal.pone.0169734
+
+## Code
+Case table
+
+| Case Number  | Description                 |
+|--------------|-----------------------------|
+|  01            |        $\phi = \frac{1}{5}$|                     |
+|  02           |        $\phi = \frac{1}{0.5}$                      |
+|  03          |           $\phi = \frac{1}{1} $                  |
+|  04           |     $\phi = \frac{1}{2}$                         |
+|  05           |            $\phi = \frac{2}{10}$, group                  |
+|  06           |       $\phi = \frac{6}{3}$, group                        |
+|  07           |             $\phi = \frac{5}{5}$, group                  |
+|  08           |       $\phi = \frac{5}{10}$, group              |
+|  09          |   $\phi = \frac{5}{5}$, group, waypoint seq adjusted                          |
+|  10          |  $\phi = \frac{6}{3}$, group, waypoint seq adjusted                            |
 
