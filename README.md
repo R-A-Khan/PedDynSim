@@ -65,7 +65,8 @@ We see that adjusting the waypoint sequence has solved the crowding and 'stuck' 
 
 ## Future Considerations
 Improvements in the model can be made based on the key performance indicators. These can include
-* Minimising the time between entry and exit along the desired path AB or CD for different values of $\phi$. 
+* Minimising the time between entry and exit along the desired path AB or CD for different values of $\phi$.
+* Evaluating the model with different flux values along the two corridors.
 * Optimizing the waypoint sequence analytically for the pedestrians instead of arbitrarily choosing.
 * Evaluating the sensitivity to the "forward heading" parameters, in order to improve trajectory of "stuck" pedestrians
 * Evaluating sensitivity to the group force parameters, which control the formation of the group (single line, or spread out laterally)
