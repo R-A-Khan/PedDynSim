@@ -6,8 +6,8 @@ from scipy.integrate import ode
  # Constant flux of flux_ped pedestrians every flux_dt seconds
  # Initial spacing between pedestrians is v_d*flux_dt
 v_d = 1.2;
-flux_ped = 2;
-flux_dt = 10;
+flux_ped = 4;
+flux_dt = 60;
 
 
 # Simulation time
@@ -52,7 +52,10 @@ else:
     include_groups = True
 
 # % Creating n_groups vector
-n_groups= np.array(flux_ped*np.ones((num_groups,1))).astype(int);
+
+n_groups = [None]*num_groups 
+for k in np.arange(0,num_groups):
+    n_groups[k]=int(flux_ped)
 
 
 N = int(sum(n_groups))
@@ -118,92 +121,100 @@ mM = 90  # maximum mass
 v0m = 1  # minimum speed
 v0M = 1.3  # maximum speed
 
-
-# Define Map walls ######################
-segments = {}
-# segments[0] = np.array([[0, 0], [0, 25]]).transpose()
-# segments[1] = np.array([[5, 0], [5, 25]]).transpose()
-# segments_number = segments.__len__()
-
-
-# % %RK: INTERSECTING CORRIDORS
-
-segments[0] = np.array([[10, -60], [10, 10]]).transpose()
-segments[1] = np.array([[15, -60], [15, 10]]).transpose()
-segments[2] = np.array([[-60, 15], [10, 15]]).transpose()
-segments[3] = np.array([[-60, 10], [10, 10]]).transpose()
-segments[4] = np.array([[10, 15], [10, 25]]).transpose()
-segments[5] = np.array([[15, 15], [15, 25]]).transpose()
-segments[6] = np.array([[15, 15], [25, 15]]).transpose()
-segments[7] = np.array([[15, 10], [25, 10]]).transpose()
+# Initialize model ##########################################################
 
 
 
-map_walls = np.array([[0,0]])
-for segment in segments:
-    map_walls = np.concatenate((map_walls, segments[segment]))
-map_walls = map_walls[1:]
 
-# Initialize model #########################
+def initialization(n_groups, N, rm, rM, mm, mM, v0m, v0M, s, am):
+    # Define Map walls ######################
+    segments = {}
+    segments[0] = np.array([[0, 25], [25, 25]]).transpose()
+    segments[1] = np.array([[0, 0], [25, 0]]).transpose()
+    # segments_number = segments.__len__()
+    
+    
+    # % %RK: INTERSECTING CORRIDORS
+    
+    # segments[0] = np.array([[10, -60], [10, 10]]).transpose()
+    # segments[1] = np.array([[15, -60], [15, 10]]).transpose()
+    # segments[2] = np.array([[-60, 15], [10, 15]]).transpose()
+    # segments[3] = np.array([[-60, 10], [10, 10]]).transpose()
+    # segments[4] = np.array([[10, 15], [10, 25]]).transpose()
+    # segments[5] = np.array([[15, 15], [15, 25]]).transpose()
+    # segments[6] = np.array([[15, 15], [25, 15]]).transpose()
+    # segments[7] = np.array([[15, 10], [25, 10]]).transpose()
+    
+    
+    map_walls = np.array([[0,0]])
+    for segment in segments:
+        map_walls = np.concatenate((map_walls, segments[segment]))
+    map_walls = map_walls[1:]
+    # Number of walls
+    double_num_walls, aux = map_walls.shape
+    num_walls = int(double_num_walls / 2)
+
+    v0 = v0m + (v0M - v0m) * np.random.rand(N, 1)  # random desired speed
+    v = 0 * np.ones((N, 2))  # initial speed
+    th = 2 * np.pi * np.random.rand(N, 1) - np.pi  # initial orientation
+    omg = 0  # initial angular velocity
+
+    r = np.empty((N, 1), dtype=float)
+    m = np.empty((N, 1), dtype=float)
+    group_membership = np.empty((N, 1), dtype=int)
+    for i in range(len(n_groups)):  # random radii and masses
+        # random radii
+        r[sum(n_groups[0: i + 1]) - n_groups[i]: sum(n_groups[0:i + 1])] = np.sort(
+            rm + (rM - rm) * np.random.rand(n_groups[i], 1))
+        # random masses
+        m[sum(n_groups[0: i + 1]) - n_groups[i]: sum(n_groups[0:i + 1])] = np.sort(
+            mm + (mM - mm) * np.random.rand(n_groups[i], 1))
+        # aux variable
+        group_membership[sum(n_groups[0: i + 1]) - n_groups[i]: sum(n_groups[0:i + 1])] = int(i)
+
+    J = 0.5 * r ** 2  # Inertia
+
+    i = 0
+    p = {}
+    X0 = []
+    while i < N:
+        print("This is i: "+str(i))
+        gr = int(group_membership[i])
+        pos = [s[gr][0] - am + 2 * am * np.random.rand(), s[gr][1] - am + 2 * am * np.random.rand()]
+        # minimum distance between pedestrians
+        d = []
+        for l in range(i):
+            d.append(int(np.linalg.norm(pos - np.array(p[l][0:1])) <= r[i] + r[l]))
+            print("This is d before: "+str(d))
+
+        # minimum distance from walls
+        for l in range(num_walls):
+            # print("This is l: "+str(l))
+            xp = pos[0]
+            yp = pos[1]
+            rp = np.array(pos)
+            ra = map_walls[2 * l: 2 * l + 2, 0]
+            rb = map_walls[2 * l: 2 * l + 2, 1]
+            xa = ra[0]
+            ya = ra[1]
+            xb = rb[0]
+            yb = rb[1]
+            t = ((xp - xa) * (xb - xa) + (yp - ya) * (yb - ya)) / (((xb - xa) ** 2 + (yb - ya) ** 2))
+            t_star = min(max(0, t), 1)
+            rh = ra + t_star * (rb - ra)
+            d.append(int(np.linalg.norm(rp - rh) <= r[i]))
+            print("This is d after: "+str(d))
+        if sum(d) == 0:
+            p[i] = [pos[0], pos[1], v[i, 0], v[i, 1], r[i], m[i]]
+            X0 = np.append(X0, [pos[0], pos[1], th[i], np.linalg.norm(v[i, :]), 0, omg])
+            i = i + 1
+
+    return map_walls, num_walls, r, m , J, v0, v, th, omg, group_membership, X0, p
 
 
-# Number of walls
-double_num_walls, aux = map_walls.shape
-num_walls = int(double_num_walls / 2)
+# ##############################################################################
 
-v0 = v0m + (v0M - v0m) * np.random.rand(N, 1)  # random desired speed
-v = 0 * np.ones((N, 2))  # initial speed
-th = 2 * np.pi * np.random.rand(N, 1) - np.pi  # initial orientation
-omg = 0  # initial angular velocity
-
-n_groups = np.array(n_groups).astype(int)
-
-r = np.empty((N, 1), dtype=float)
-m = np.empty((N, 1), dtype=float)
-group_membership = np.empty((N, 1), dtype=int)
-# group_membership = np.array(group_membership)
-for i in range(len(n_groups)):  # random radii and masses
-    # fixed radii
-    r[i] = rM
-    # fixed masses
-    m[i] = mM
-    # aux variable
-    a_s = sum(n_groups[0: i + 1])[:][0]- n_groups[i][0]
-    a_b = sum(n_groups[0:i + 1])[:][0]
-    group_membership[a_s : a_b] = int(i)
-
-J = 0.5 * r ** 2  # Inertia
-
-i = 0
-p = {}
-X0 = []
-while i < N:
-    gr = int(group_membership[i])
-    pos = [s[gr][0] - am + 2 * am * np.random.rand(), s[gr][1] - am + 2 * am * np.random.rand()]
-    # minimum distance between pedestrians
-    d = []
-    for l in range(i):
-        d.append(int(np.linalg.norm(pos - np.array(p[l][0:1])) <= r[i] + r[l]))
-
-    # minimum distance from walls
-    for l in range(num_walls):
-        xp = pos[0]
-        yp = pos[1]
-        rp = np.array(pos)
-        ra = map_walls[2 * l: 2 * l + 2, 0]
-        rb = map_walls[2 * l: 2 * l + 2, 1]
-        xa = ra[0]
-        ya = ra[1]
-        xb = rb[0]
-        yb = rb[1]
-        t = ((xp - xa) * (xb - xa) + (yp - ya) * (yb - ya)) / (((xb - xa) ** 2 + (yb - ya) ** 2))
-        t_star = min(max(0, t), 1)
-        rh = ra + t_star * (rb - ra)
-        d.append(int(np.linalg.norm(rp - rh) <= r[i]))
-    if sum(d) == 0:
-        p[i] = [pos[0], pos[1], v[i, 0], v[i, 1], r[i], m[i]]
-        X0 = np.append(X0, [pos[0], pos[1], th[i], np.linalg.norm(v[i, :]), 0, omg])
-        i = i + 1
+map_walls, num_walls, r, m, J, v0, v, th, omg, group_membership, X0, p = initialization(n_groups, N, rm, rM, mm, mM, v0m, v0M, s, am)
 
 # Create class structure to create waypoint sequence
 ##############################################################################
