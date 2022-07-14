@@ -451,10 +451,13 @@ plt.figure()
 # Plot of the walls
 for i in range(num_walls):
     plt.plot(map_walls[2*i,:], map_walls[2*i+1,:],'k')
+    plt.xlim([0,25])
+    plt.ylim([0,25])
 # Starting points
 plt.plot(X[0].__getitem__(slice(0, None, 6)), X[0].__getitem__(slice(1, None, 6)), 'ro')
 # Trajectories
 for i in range(N):
     plt.plot(X[:, 6*i],X[:, 6*i+1], color=colors[int(group_membership[i])])
-plt.axis('equal')
+plt.xlim([0,25])
+plt.ylim([0,25])
 plt.savefig('trajectories.eps')
