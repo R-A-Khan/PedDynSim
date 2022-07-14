@@ -174,14 +174,14 @@ def initialization(n_groups, N, rm, rM, mm, mM, v0m, v0M, s, am):
     p = {}
     X0 = []
     while i < N:
-        print("This is i: "+str(i))
+#         print("This is i: "+str(i))
         gr = int(group_membership[i])
         pos = [s[gr][0] - am + 2 * am * np.random.rand(), s[gr][1] - am + 2 * am * np.random.rand()]
         # minimum distance between pedestrians
         d = []
         for l in range(i):
             d.append(int(np.linalg.norm(pos - np.array(p[l][0:1])) <= r[i] + r[l]))
-            print("This is d before: "+str(d))
+#             print("This is d before: "+str(d))
 
         # minimum distance from walls
         for l in range(num_walls):
@@ -199,7 +199,7 @@ def initialization(n_groups, N, rm, rM, mm, mM, v0m, v0M, s, am):
             t_star = min(max(0, t), 1)
             rh = ra + t_star * (rb - ra)
             d.append(int(np.linalg.norm(rp - rh) <= r[i]))
-            print("This is d after: "+str(d))
+#             print("This is d after: "+str(d))
         if sum(d) == 0:
             p[i] = [pos[0], pos[1], v[i, 0], v[i, 1], r[i], m[i]]
             X0 = np.append(X0, [pos[0], pos[1], th[i], np.linalg.norm(v[i, :]), 0, omg])
