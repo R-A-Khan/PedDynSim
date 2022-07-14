@@ -35,11 +35,7 @@ alpha = 3
 # Number of individuals in each group
 # Define n_i the number of individuals in group i, then
 # n_groups = [n_1, n_2, ..., n_N];
-
-
 # % Individuals are treated as groups of 1 with no group force
-
-
 # % For simulation time of 60 seconds
 # % need constant flux of flux_ped pedestrians every flux_dt seconds
 # % in A-B direction and C-D direction
