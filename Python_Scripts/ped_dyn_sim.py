@@ -442,6 +442,7 @@ while sol.successful() and k < num_steps:
 # Plotting example
 
 
+
 colors = {0: "#0066CC", 1: "#006600"}
 plt.figure()
 # Plot of the walls
@@ -453,7 +454,8 @@ for i in range(num_walls):
 plt.plot(X[0].__getitem__(slice(0, None, 6)), X[0].__getitem__(slice(1, None, 6)), 'ro')
 # Trajectories
 for i in range(N):
-    plt.plot(X[:, 6*i],X[:, 6*i+1], color=colors[int(group_membership[i])])
+    plt.plot(X[:, 6*i],X[:, 6*i+1], color=colors[int(i%2)])
 plt.xlim([0,25])
 plt.ylim([0,25])
+# plt.axis('equal')
 plt.savefig('trajectories.eps')
