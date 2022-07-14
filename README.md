@@ -91,3 +91,5 @@ The simulation is created by executing the matlab script __simulation_run.m__ . 
 |  07           |             $\phi = \frac{5}{5}$, group, waypoint sequence adjusted                   |
 |  08           |       $\phi = \frac{5}{10}$, group, waypoint sequence adjusted               |
 
+
+_Note: The python script for implementation of the same solver is currently under progress._
