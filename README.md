@@ -78,6 +78,7 @@ Improvements in the model can be made based on the key performance indicators. T
 
 ## Code
 
+### Matlab
 The simulation is created by executing the matlab script __simulation_run.m__ . The flux variables and other parameter settings can be adjusted in this script. The relevant case files are automatically saved using the identifier __case_num__. The video of the simulation can be generated using the __movieplay.m__ script. All results displayed here are found in the __results__ directory, and the following table describes each data file.
 
 | Case Number  | Description                 |
@@ -91,5 +92,5 @@ The simulation is created by executing the matlab script __simulation_run.m__ . 
 |  07           |             $\phi = \frac{5}{5}$, group, waypoint sequence adjusted                   |
 |  08           |       $\phi = \frac{5}{10}$, group, waypoint sequence adjusted               |
 
-
-_Note: The python script for implementation of the same solver is currently under progress._
+### Python
+The python script __ped_dyn_sim.py__ is an implementation of the same solver adapted from the algorithm developed by Farina et. al. (2017). Change the flux parameters in the script and execute. 
