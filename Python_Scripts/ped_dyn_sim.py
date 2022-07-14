@@ -129,21 +129,21 @@ v0M = 1.3  # maximum speed
 def initialization(n_groups, N, rm, rM, mm, mM, v0m, v0M, s, am):
     # Define Map walls ######################
     segments = {}
-    segments[0] = np.array([[0, 25], [25, 25]]).transpose()
-    segments[1] = np.array([[0, 0], [25, 0]]).transpose()
-    # segments_number = segments.__len__()
+    # segments[0] = np.array([[0, 25], [25, 25]]).transpose()
+    # segments[1] = np.array([[0, 0], [25, 0]]).transpose()
+    # # segments_number = segments.__len__()
     
     
     # % %RK: INTERSECTING CORRIDORS
     
-    # segments[0] = np.array([[10, -60], [10, 10]]).transpose()
-    # segments[1] = np.array([[15, -60], [15, 10]]).transpose()
-    # segments[2] = np.array([[-60, 15], [10, 15]]).transpose()
-    # segments[3] = np.array([[-60, 10], [10, 10]]).transpose()
-    # segments[4] = np.array([[10, 15], [10, 25]]).transpose()
-    # segments[5] = np.array([[15, 15], [15, 25]]).transpose()
-    # segments[6] = np.array([[15, 15], [25, 15]]).transpose()
-    # segments[7] = np.array([[15, 10], [25, 10]]).transpose()
+    segments[0] = np.array([[10, -60], [10, 10]]).transpose()
+    segments[1] = np.array([[15, -60], [15, 10]]).transpose()
+    segments[2] = np.array([[-60, 15], [10, 15]]).transpose()
+    segments[3] = np.array([[-60, 10], [10, 10]]).transpose()
+    segments[4] = np.array([[10, 15], [10, 25]]).transpose()
+    segments[5] = np.array([[15, 15], [15, 25]]).transpose()
+    segments[6] = np.array([[15, 15], [25, 15]]).transpose()
+    segments[7] = np.array([[15, 10], [25, 10]]).transpose()
     
     
     map_walls = np.array([[0,0]])
