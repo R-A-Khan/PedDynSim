@@ -11,7 +11,7 @@ flux_dt = 60;
 
 
 # Simulation time
-TF = 20
+TF = 60
 t_fine = 1/30  # time accuracy
 
 # Model Parameters #############
